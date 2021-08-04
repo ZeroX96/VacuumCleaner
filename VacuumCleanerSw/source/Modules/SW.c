@@ -20,7 +20,7 @@
 #if SW_SIM == 1
 volatile uint8_t plus_sw = 0;
 volatile uint8_t minus_sw = 0;
-volatile uint8_t set_sw = 0;
+volatile uint8_t press_sw = 0;
 #endif
 
 
@@ -42,22 +42,22 @@ void SW_Init(void)
     /* Initialize switches as inputs */
     //GPIO_InitPortPin(SW_PLUS_PORT_CR, SW_PLUS_PIN, GPIO_IN);
     //GPIO_InitPortPin(SW_MINUS_PORT_CR, SW_MINUS_PIN, GPIO_IN);
-    //GPIO_InitPortPin(SW_SET_PORT_CR, SW_SET_PIN, GPIO_IN);
+    //GPIO_InitPortPin(SW_PRESS_PORT_CR, SW_PRESS_PIN, GPIO_IN);
 
    // Enable peripheral clock 
-   SET_SW_ENABLE_CLOCK;
+   PRESS_SW_ENABLE_CLOCK;
    PLUS_SW_ENABLE_CLOCK;
    MINUS_SW_ENABLE_CLOCK;
    
 
    LL_GPIO_InitTypeDef SW_GPIO;
-   SW_GPIO.Pin        = SET_SW_PIN;
+   SW_GPIO.Pin        = PRESS_SW_PIN;
    SW_GPIO.Mode       = LL_GPIO_MODE_INPUT;
    SW_GPIO.Speed      = LL_GPIO_SPEED_FREQ_HIGH;
    SW_GPIO.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
    SW_GPIO.Pull       = LL_GPIO_PULL_NO;
    SW_GPIO.Alternate  = LL_GPIO_AF_0;
-   LL_GPIO_Init(SET_SW_PORT,&SW_GPIO);
+   LL_GPIO_Init(PRESS_SW_PORT,&SW_GPIO);
    
    SW_GPIO.Pin        = PLUS_SW_PIN;
    SW_GPIO.Mode       = LL_GPIO_MODE_INPUT;
@@ -139,14 +139,14 @@ void SW_Update(void)
            #else
            SWs_Info[index].sw_samples[1] = minus_sw ? SW_PRESSED_LEVEL : SW_RELEASED_LEVEL;
            #endif
-        } else if (index == SW_SET)
+        } else if (index == SW_PRESS)
         {
            #if SW_SIM != 1
-            //SWs_Info[index].sw_samples[1] = GPIO_ReadPortPin(SW_SET_PORT_DR, SW_SET_PIN);
-           SWs_Info[index].sw_samples[1] = (LL_GPIO_ReadInputPort(SET_SW_PORT) & SET_SW_PIN) ?
+            //SWs_Info[index].sw_samples[1] = GPIO_ReadPortPin(SW_PRESS_PORT_DR, SW_PRESS_PIN);
+           SWs_Info[index].sw_samples[1] = (LL_GPIO_ReadInputPort(PRESS_SW_PORT) & PRESS_SW_PIN) ?
                                           SW_RELEASED_LEVEL : SW_PRESSED_LEVEL;
            #else
-           SWs_Info[index].sw_samples[1] = set_sw ? SW_PRESSED_LEVEL : SW_RELEASED_LEVEL;
+           SWs_Info[index].sw_samples[1] = press_sw ? SW_PRESSED_LEVEL : SW_RELEASED_LEVEL;
            #endif
         } else
         {

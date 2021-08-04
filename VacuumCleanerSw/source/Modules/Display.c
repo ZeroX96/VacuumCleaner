@@ -32,7 +32,7 @@ void DISP_Init(void)
    time[5] = ':';
    time[8] = 0;
 
-   printf("BEAT THE CLOCK\n");
+   printf("Vacuum Cleaner In Control\n");
    printf("Clock is running ...\n");         
    printf("Press on 's' to set the clock\n         ");
    UART_Send_String("BEAT THE CLOCK\n");

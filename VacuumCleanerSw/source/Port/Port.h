@@ -7,8 +7,8 @@
 #define LED_PORT           (GPIOA)
 #define LED_PIN            (LL_GPIO_PIN_5)
 
-#define SET_SW_PORT        (GPIOC)
-#define SET_SW_PIN         (LL_GPIO_PIN_13)
+#define PRESS_SW_PORT        (GPIOC)
+#define PRESS_SW_PIN         (LL_GPIO_PIN_13)
 
 #define PLUS_SW_PORT       (GPIOA)
 #define PLUS_SW_PIN        (LL_GPIO_PIN_6)

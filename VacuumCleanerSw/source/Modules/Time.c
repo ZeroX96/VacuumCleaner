@@ -47,7 +47,7 @@ void TIM_Update(void)
    {
       case TIM_NORMAL:
       {
-         if (SW_GetState(SW_SET) == (SW_PRE_PRESSED))
+         if (SW_GetState(SW_PRESS) == (SW_PRE_PRESSED))
          {
             printf("Please, Set Hours ...\n");         
             printf("Use 'UP' and 'DOWN' arrows\n");
@@ -77,7 +77,7 @@ void TIM_Update(void)
       
       case TIM_SET_HOURS:
       {         
-         if (SW_GetState(SW_SET) == SW_PRE_PRESSED)
+         if (SW_GetState(SW_PRESS) == SW_PRE_PRESSED)
          {
             
             printf("Please, Set Minutes ...\n");         
@@ -116,7 +116,7 @@ void TIM_Update(void)
       
       case TIM_SET_MINUTES:
       {
-         if (SW_GetState(SW_SET) == SW_PRE_PRESSED)
+         if (SW_GetState(SW_PRESS) == SW_PRE_PRESSED)
          {
             
             printf("Clock is running ...\n");         

@@ -5,7 +5,7 @@ typedef enum
 {
     SW_PLUS,
     SW_MINUS,
-    SW_SET
+    SW_PRESS
 }tSW;
 
 typedef enum
